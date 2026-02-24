@@ -32,42 +32,133 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* ── Global background ── */
-    .stApp {background-color: #0d1117; color: #c9d1d9;}
-    section[data-testid="stSidebar"] {background-color: #161b22;}
-    section[data-testid="stSidebar"] * {color: #c9d1d9 !important;}
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+    /* ── Global background + typography ── */
+    .stApp {
+        background:
+            radial-gradient(circle at 20% 10%, rgba(88, 166, 255, 0.14), transparent 35%),
+            radial-gradient(circle at 80% 20%, rgba(248, 81, 73, 0.10), transparent 30%),
+            linear-gradient(165deg, #060b14 0%, #0b1220 45%, #0e1629 100%);
+        color: #f2f7ff;
+        font-family: "Inter", "Segoe UI", sans-serif;
+    }
+
+    .block-container {
+        animation: fadeInUp 0.55s ease-out;
+    }
+
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #0b1322 0%, #111b2f 100%);
+        border-right: 1px solid rgba(88, 166, 255, 0.18);
+    }
+
+    section[data-testid="stSidebar"] * {
+        color: #f2f7ff !important;
+        font-size: 1.08rem !important;
+    }
 
     /* ── Metric cards ── */
     div[data-testid="metric-container"] {
-        background: #161b22;
-        border: 1px solid #30363d;
-        border-radius: 8px;
+        background: linear-gradient(160deg, rgba(20, 31, 52, 0.92), rgba(10, 18, 30, 0.92));
+        border: 1px solid rgba(88, 166, 255, 0.30);
+        border-radius: 14px;
         padding: 16px 20px;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
-    div[data-testid="metric-container"] label {color: #8b949e !important;}
-    div[data-testid="metric-container"] div {color: #c9d1d9 !important;}
+
+    div[data-testid="metric-container"]:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(10, 132, 255, 0.22);
+        border-color: rgba(88, 166, 255, 0.65);
+    }
+
+    div[data-testid="metric-container"] label {
+        color: #9cc8ff !important;
+        font-weight: 700 !important;
+        font-size: 0.96rem !important;
+        letter-spacing: 0.01em;
+    }
+
+    div[data-testid="metric-container"] div {
+        color: #ffffff !important;
+        font-weight: 800 !important;
+        font-size: 1.65rem !important;
+    }
 
     /* ── Headers ── */
-    h1, h2, h3 {color: #58a6ff !important;}
+    h1, h2, h3 {
+        color: #86beff !important;
+        letter-spacing: 0.01em;
+        text-shadow: 0 0 24px rgba(88, 166, 255, 0.25);
+    }
+
+    p, li, label, span {
+        color: #e7f1ff !important;
+    }
+
+    /* ── Sidebar radio ── */
+    div[role="radiogroup"] > label {
+        background: rgba(88, 166, 255, 0.10);
+        border: 1px solid rgba(88, 166, 255, 0.30);
+        border-radius: 10px;
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        transition: all 0.25s ease;
+    }
+
+    div[role="radiogroup"] > label:hover {
+        border-color: rgba(88, 166, 255, 0.72);
+        background: rgba(88, 166, 255, 0.18);
+        transform: translateX(2px);
+    }
 
     /* ── Buttons ── */
     .stButton > button {
-        background-color: #238636;
+        background: linear-gradient(120deg, #238636, #2ea043);
         color: #ffffff;
-        border: none;
-        border-radius: 6px;
-        padding: 8px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 10px;
+        padding: 10px 22px;
+        font-weight: 700;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .stButton > button:hover {background-color: #2ea043;}
+
+    .stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 22px rgba(46, 160, 67, 0.35);
+    }
 
     /* ── Sliders ── */
-    .stSlider > div > div > div > div {background: #58a6ff;}
+    .stSlider > div > div > div > div {
+        background: linear-gradient(90deg, #58a6ff, #7ec8ff);
+    }
 
     /* ── Dataframes ── */
-    .stDataFrame {background: #161b22; border: 1px solid #30363d; border-radius: 8px;}
+    .stDataFrame {
+        background: rgba(15, 24, 40, 0.92);
+        border: 1px solid rgba(88, 166, 255, 0.28);
+        border-radius: 12px;
+    }
 
     /* ── Divider ── */
-    hr {border-color: #30363d;}
+    hr {border-color: rgba(88, 166, 255, 0.22);}
+
+    /* ── Small motion effects ── */
+    .stPlotlyChart {
+        animation: softPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes fadeInUp {
+        from {opacity: 0; transform: translateY(10px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes softPulse {
+        0%, 100% {filter: drop-shadow(0 0 0 rgba(88, 166, 255, 0.00));}
+        50% {filter: drop-shadow(0 0 8px rgba(88, 166, 255, 0.16));}
+    }
     </style>
     """,
     unsafe_allow_html=True,
